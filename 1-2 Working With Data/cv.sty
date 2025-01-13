@@ -1,0 +1,70 @@
+% CV package by Joseph D. MacMillan
+
+\ProvidesPackage{cv}
+
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+
+\pagestyle{empty}
+
+\setcounter{secnumdepth}{0}
+
+\setlength{\paperwidth}{8.5in}
+\setlength{\paperheight}{11in}
+\setlength{\hoffset}{-0.875in}
+\setlength{\voffset}{-0.875in}
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{9in}
+
+\newcommand{\cvinfo}[5]{
+\noindent
+\parbox[c]{6in}{
+\textbf{#1} \\*
+#2 \\*
+#3 \\*
+#4 \\*
+#5
+\vspace*{0.2in}
+}
+}
+
+\renewcommand{\section}{
+\@startsection{section}{1}{0in}
+{\baselineskip}
+{\baselineskip}{\noindent \normalfont\normalsize\scshape }
+}
+
+\let\oldsection\section
+\renewcommand{\section}[1]{
+\noindent \rule[0.1in]{6.5in}{0.01in}
+\vspace*{-0.4in}
+\oldsection{#1}
+\noindent \rule[0.1in]{6.5in}{0.01in}
+%\vspace*{-0.2in}
+}
+
+
+\newcommand{\cvsection}[1]{
+\noindent
+%\\*
+\rule{6.5in}{0.01in} \\*
+\textsc{#1} \\*
+\rule[0.1in]{6.5in}{0.01in} \\
+\vspace*{-0.1in}
+}
+
+\newcommand{\cvitem}[4]{
+\hspace*{0.125in}
+\parbox[c]{4in}{
+\emph{#1} \\*
+\textbf{#2} \\*
+#3 }
+\parbox[c]{2in}{\begin{flushright}  #4\end{flushright}} \\*
+\vspace*{0.125in}
+}
+
+\newcommand{\cvitemb}[1]{
+\hspace*{0.125in} 
+\parbox[c]{6in}{#1}
+\vspace*{0.2in}
+}
