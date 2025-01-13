@@ -7,9 +7,6 @@ from matplotlib import rc
 import argparse
 from sys import argv
 
-rc('text', usetex=True)
-matplotlib.rcParams['mathtext.fontset'] = 'cm'
-matplotlib.rcParams['font.family'] = 'STIXGeneral'
 plt.rcParams.update({'font.size':14})
 plt.rc('axes', labelsize=16)
 plt.rcParams.update({'figure.autolayout': True})
