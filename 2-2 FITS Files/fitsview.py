@@ -3,46 +3,51 @@
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 from astropy.io import fits
 from astropy.wcs import WCS
-from astropy.visualization import LogStretch, PercentileInterval, AsinhStretch
+from astropy.visualization import LogStretch, PercentileInterval, AsinhStretch, LinearStretch
 import argparse
 from sys import argv
 
-# this is to make the fonts on the plots better
-#matplotlib.rcParams['font.family'] = 'STIXGeneral'
-#plt.rcParams.update({'font.size':14})
-#plt.rc('axes', labelsize=16)
-#plt.rcParams.update({'figure.autolayout': True})
+matplotlib.rcParams['mathtext.fontset'] = 'cm'
+matplotlib.rcParams['font.family'] = 'STIXGeneral'
+plt.rcParams.update({'font.size':14})
+plt.rc('axes', labelsize=16)
+plt.rcParams.update({'figure.autolayout': True})
 
-# this is to be able to pass in arguments -- like the file name -- to the program
 parser = argparse.ArgumentParser(description='Display FITS image.')
 parser.add_argument('filename', type=str, help='file name containing data in columns')
 parser.add_argument('-hdu', dest='hdu', default=0, type=int, help='HDU to get image data from')
+parser.add_argument('-p', dest='percent', type=float, help='Apply a percentile interval to the image')
+parser.add_argument('-s', dest='asinh', type=float, help='Apply a arcsinh stretch to the image')
+parser.add_argument('-l', dest='log', type=float, help='Apply a log stretch to the image')
 args = parser.parse_args()
 
-# open the FITS file and get the header and image
 f = fits.open(args.filename)
 hdu = f[args.hdu]
 header = hdu.header
 image = hdu.data
 
-# print the header (repr will keep the formatting)
 print(repr(header))
 
-# get the world coordinate system info from the header
 wcs = WCS(hdu.header)
 
 fig = plt.figure()
-ax = fig.add_subplot(1, 1, 1, projection=wcs)
+fig.add_subplot(111, projection=wcs)
 
-# create a transform for showing the image; see AstroPy docs
-transform = AsinhStretch(0.9) + PercentileInterval(99.5)
+transform = LinearStretch()
+if args.asinh is not None:
+	print("Applying arcsinh transform")
+	transform += AsinhStretch(args.asinh)
+if args.log is not None:
+	print("Applying log transform")
+	transform += LogStretch(args.log)
+if args.percent is not None:
+	print("Applying percentile interval transform")
+	transform += PercentileInterval(args.percent)
 
-# show the image
-ax.imshow(transform(image), cmap='gray', origin='lower')
-ax.set_xlabel(r'$\alpha$')
-ax.set_ylabel(r'$\delta$')
+plt.imshow(transform(image), cmap='gray', origin='lower')
 plt.show()
 
 
