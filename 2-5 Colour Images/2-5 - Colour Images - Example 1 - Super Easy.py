@@ -4,9 +4,10 @@ from astropy.io import fits
 from astropy.visualization import LogStretch, PercentileInterval, AsinhStretch
 
 # open the FITS files; everything is aligned so just grab the image data directly
-R = fits.open("hst_12193_04_wfc3_uvis_f547m_drz.fits")[1].data
-G = fits.open("hst_12193_04_wfc3_uvis_f467m_drz.fits")[1].data
-B = fits.open("hst_12193_04_wfc3_uvis_f395n_drz.fits")[1].data
+data_dir = "/home/joe/Data/"
+R = fits.open(data_dir + "hst_12193_04_wfc3_uvis_f547m_drz.fits")[1].data
+G = fits.open(data_dir + "hst_12193_04_wfc3_uvis_f467m_drz.fits")[1].data
+B = fits.open(data_dir + "hst_12193_04_wfc3_uvis_f395n_drz.fits")[1].data
 
 # Now, these images are all weirdly rotated, so we can either rotate (requiring a SciPy call
 # to do so) or we can just chop out the centre of the image.  I'm going to do that:

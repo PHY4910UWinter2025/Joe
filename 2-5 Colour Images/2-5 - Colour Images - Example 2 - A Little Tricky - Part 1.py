@@ -5,9 +5,10 @@ from astropy.visualization import LogStretch, PercentileInterval, AsinhStretch
 from reproject import reproject_interp
 
 # open the FITS files; this time we need the HDUs to reproject the images
-hduR = fits.open("jw02733-o001_t001_nircam_clear-f356w_i2d.fits")[1]
-hduG = fits.open("jw02733-o001_t001_nircam_clear-f212n_i2d.fits")[1]
-hduB = fits.open("jw02733-o001_t001_nircam_clear-f187n_i2d.fits")[1]
+data_dir = "/home/joe/Data/"
+hduR = fits.open(data_dir + "jw02733-o001_t001_nircam_clear-f356w_i2d.fits")[1]
+hduG = fits.open(data_dir + "jw02733-o001_t001_nircam_clear-f212n_i2d.fits")[1]
+hduB = fits.open(data_dir + "jw02733-o001_t001_nircam_clear-f187n_i2d.fits")[1]
 
 # Here's what I mean about not being aligned; I'll stack the images using imshow and transparency
 R = hduR.data
