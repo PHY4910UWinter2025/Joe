@@ -16,8 +16,7 @@ def evolve(p1, p2, dt, tf, filename):
 	f = open(filename, "w")
 	
 	E0 = calc_energy(p1, p2)
-	dE = 0
-	
+		
 	print(f"Evolving two-body system: E0 = {E0}")
 	
 	t = 0
@@ -40,9 +39,11 @@ def evolve(p1, p2, dt, tf, filename):
 		
 		E = calc_energy(p1, p2)
 		
-		f.write(f"{t} {p1.position[0]} {p1.position[1]} {p2.position[0]} {p2.position[1]}")
+		f.write(f"{t} {p1.x()} {p1.y()} {p1.z()} {p2.x()} {p2.y()} {p2.z()} {E}\n")
 	
 	f.close()
+	
+	print(f"Done! Ef = {E}")
 	
 sun = Particle(0.9, [-0.10, 0, 0], [0, 0.13333, 0])
 earth = Particle(0.1, [0.9, 0, 0], [0, -1.2, 0])
