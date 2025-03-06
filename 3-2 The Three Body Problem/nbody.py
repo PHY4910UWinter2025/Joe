@@ -123,7 +123,8 @@ class System:
 
 if __name__ == "__main__":
 	
-	s = System.read("test.txt")
+	s = System.read("earthsun.txt")
+	print(s)
 	
 	s.calc_accels()
 	
