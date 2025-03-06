@@ -48,7 +48,7 @@ def evolve(p1, p2, dt, tf, filename):
 sun = Particle(0.9, [-0.10, 0, 0], [0, 0.13333, 0])
 earth = Particle(0.1, [0.9, 0, 0], [0, -1.2, 0])
 
-evolve(sun, earth, 0.01, 500, "two-body.dat")
+evolve(sun, earth, 0.01, 100, "two-body.dat")
 	
 			
 			
