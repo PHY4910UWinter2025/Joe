@@ -4,7 +4,8 @@ import numpy as np
 # options
 outfile = "open_cluster_ic.txt"
 r_max = 5.0
-N = 100
+v_max = 0.7
+N = 1000
 G = 0.004301550874918987
 
 rng = np.random.default_rng()
@@ -29,7 +30,7 @@ for i in range(N):
 	# y = ...
 	# z = ...
 	
-	vel = [0,0,0]
+	vel = -v_max + 2.0* v_max * rng.random(3)
 	
 	p = Particle(m, pos, vel)
 	
