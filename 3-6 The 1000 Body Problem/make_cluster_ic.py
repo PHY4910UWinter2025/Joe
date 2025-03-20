@@ -3,9 +3,9 @@ import numpy as np
 
 # options
 outfile = "open_cluster_ic.bin"
-vel_max = 0.5
+vel_max = 5 / 0.0656
 r_max = 5.0
-N = 100
+N = 1000
 
 rng = np.random.default_rng()
 
